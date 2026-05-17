@@ -1,8 +1,14 @@
 package pl.wsb.fitnesstracker.workoutsession;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.Getter;
+import pl.wsb.fitnesstracker.training.api.Training;
 
-// TODO: Define the Event entity with appropriate fields and annotations
+@Getter
+@Entity
 public class WorkoutSession {
 
     @Id
@@ -14,4 +20,8 @@ public class WorkoutSession {
     private double endLatitude;
     private double endLongitude;
     private double altitude;
+
+    @ManyToOne
+    @JoinColumn(name = "training_id")
+    private Training training;
 }
