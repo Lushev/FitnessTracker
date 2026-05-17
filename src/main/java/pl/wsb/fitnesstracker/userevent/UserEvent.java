@@ -20,12 +20,6 @@ public class UserEvent {
     @Nullable
     private Long id;
 
-    @Column(name = "user_id", nullable = false)
-    private String userId;
-
-    @Column(name = "event_id", nullable = false)
-    private String eventId;
-
     @Column(name = "status", nullable = false)
     private String status;
 

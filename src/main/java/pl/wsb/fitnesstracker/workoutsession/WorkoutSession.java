@@ -13,7 +13,6 @@ public class WorkoutSession {
 
     @Id
     private int id;
-    private int trainingId;
     private String timestamp;
     private double startLatitude;
     private double startLongitude;
