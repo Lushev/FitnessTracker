@@ -8,6 +8,21 @@ import pl.wsb.fitnesstracker.user.api.UserDto;
 class UserMapper {
 
     UserDto toUserDto(User user) {
-        return new UserDto(user.getId(), user.getFirstName(), user.getLastName(), user.getBirthdate(), user.getEmail());
+        return new UserDto(
+                user.getId(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getBirthdate(),
+                user.getEmail()
+        );
+    }
+
+    User toUser(UserDto userDto) {
+        return new User(
+                userDto.firstName(),
+                userDto.lastName(),
+                userDto.birthdate(),
+                userDto.email()
+        );
     }
 }

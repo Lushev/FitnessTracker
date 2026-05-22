@@ -5,6 +5,7 @@ import pl.wsb.fitnesstracker.user.api.User;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.List;
 
 interface UserRepository extends JpaRepository<User, Long> {
 
@@ -16,8 +17,15 @@ interface UserRepository extends JpaRepository<User, Long> {
      */
     default Optional<User> findByEmail(String email) {
         return findAll().stream()
-                .filter(user -> Objects.equals(user.getEmail(), email))
+                .filter(user -> user.getEmail().equalsIgnoreCase(email))
                 .findFirst();
     }
 
+    default List<User> findByEmailContainingIgnoreCase(String email) {
+        return findAll().stream()
+                .filter(user -> user.getEmail()
+                        .toLowerCase()
+                        .contains(email.toLowerCase()))
+                .toList();
+    }
 }

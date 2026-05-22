@@ -13,5 +13,6 @@ public interface UserService {
      * @return The created user
      */
     User createUser(User user);
-
+    void deleteUser(Long id);
+    User updateUser(Long id, UserDto userDto);
 }
