@@ -53,17 +53,28 @@ class UserServiceImpl implements UserService, UserProvider {
     }
 
     @Override
-    public User updateUser(Long id, User userDto) {
-
-        User user = userRepository.findById(id)
+    public User updateUser(Long id, UserDto userDto) {
+        User existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));
 
-        user.setFirstName(user.getFirstName());
-        user.setLastName(user.getLastName());
-        user.setBirthdate(user.getBirthdate());
-        user.setEmail(user.getEmail());
+        existingUser.setFirstName(userDto.firstName());
+        existingUser.setLastName(userDto.lastName());
+        existingUser.setBirthdate(userDto.birthdate());
+        existingUser.setEmail(userDto.email());
 
-        return userRepository.save(user);
+        return userRepository.save(existingUser);
     }
 
+    @Override
+    public User updateUser(Long id, User incomingUser) {
+        User existingUser = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException(id));
+
+        existingUser.setFirstName(incomingUser.getFirstName());
+        existingUser.setLastName(incomingUser.getLastName());
+        existingUser.setBirthdate(incomingUser.getBirthdate());
+        existingUser.setEmail(incomingUser.getEmail());
+
+        return userRepository.save(existingUser);
+    }
 }
